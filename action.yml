@@ -148,7 +148,7 @@ runs:
           step: start
           token: ${{ github.token }}
           env: ${{ env.PANTHEON_TARGET_ENV }}
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.ref || github.head_ref }}
 
       - name: Configure SSH key
         uses: webfactory/ssh-agent@v0.10.0
@@ -321,7 +321,7 @@ runs:
           step: finish
           token: ${{ github.token }}
           status: ${{ job.status }}
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.ref || github.head_ref }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
           env: ${{ env.PANTHEON_TARGET_ENV }}
           env_url: https://${{ env.PANTHEON_TARGET_ENV }}-${{ inputs.site }}.pantheonsite.io
